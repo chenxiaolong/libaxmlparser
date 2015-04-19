@@ -18,7 +18,6 @@
 #include <string.h>
 
 #include <utils/SharedBuffer.h>
-#include <utils/Atomic.h>
 
 // ---------------------------------------------------------------------------
 
@@ -94,13 +93,13 @@ SharedBuffer* SharedBuffer::reset(size_t new_size) const
 }
 
 void SharedBuffer::acquire() const {
-    android_atomic_inc(&mRefs);
+    ++mRefs;
 }
 
 int32_t SharedBuffer::release(uint32_t flags) const
 {
     int32_t prev = 1;
-    if (onlyOwner() || ((prev = android_atomic_dec(&mRefs)) == 1)) {
+    if (onlyOwner() || ((prev = (--mRefs)) == 1)) {
         mRefs = 0;
         if ((flags & eKeepStorage) == 0) {
             free(const_cast<SharedBuffer*>(this));

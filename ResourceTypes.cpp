@@ -18,7 +18,6 @@
 //#define LOG_NDEBUG 0
 
 #include <androidfw/ResourceTypes.h>
-#include <utils/Atomic.h>
 #include <utils/ByteOrder.h>
 #include <utils/Log.h>
 #include <utils/String16.h>

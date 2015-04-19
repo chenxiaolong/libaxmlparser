@@ -17,6 +17,8 @@
 #ifndef ANDROID_SHARED_BUFFER_H
 #define ANDROID_SHARED_BUFFER_H
 
+#include <atomic>
+
 #include <stdint.h>
 #include <sys/types.h>
 
@@ -95,7 +97,7 @@ private:
         SharedBuffer& operator = (const SharedBuffer&);
  
         // 16 bytes. must be sized to preserve correct alignment.
-        mutable int32_t        mRefs;
+        mutable std::atomic_int mRefs;
                 size_t         mSize;
                 uint32_t       mReserved[2];
 };
