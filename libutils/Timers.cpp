@@ -18,7 +18,6 @@
 // Timer functions.
 //
 #include <utils/Timers.h>
-#include <utils/Log.h>
 
 #include <stdlib.h>
 #include <stdio.h>

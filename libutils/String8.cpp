@@ -16,11 +16,12 @@
 
 #include <utils/String8.h>
 
-#include <utils/Log.h>
 #include <utils/Unicode.h>
 #include <utils/SharedBuffer.h>
 #include <utils/String16.h>
 //#include <utils/threads.h>
+
+#include <logging.h>
 
 #include <ctype.h>
 
