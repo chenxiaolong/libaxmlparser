@@ -99,7 +99,7 @@ void SharedBuffer::acquire() const {
 int32_t SharedBuffer::release(uint32_t flags) const
 {
     int32_t prev = 1;
-    if (onlyOwner() || ((prev = (--mRefs)) == 1)) {
+    if (onlyOwner() || ((prev = (mRefs--)) == 1)) {
         mRefs = 0;
         if ((flags & eKeepStorage) == 0) {
             free(const_cast<SharedBuffer*>(this));
