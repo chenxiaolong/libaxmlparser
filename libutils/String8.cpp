@@ -20,7 +20,7 @@
 #include <utils/Unicode.h>
 #include <utils/SharedBuffer.h>
 #include <utils/String16.h>
-#include <utils/threads.h>
+//#include <utils/threads.h>
 
 #include <ctype.h>
 
