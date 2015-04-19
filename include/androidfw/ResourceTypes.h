@@ -20,9 +20,9 @@
 #ifndef _LIBS_UTILS_RESOURCE_TYPES_H
 #define _LIBS_UTILS_RESOURCE_TYPES_H
 
-#include <utils/String16.h>
+#include <mutex>
 
-#include <utils/threads.h>
+#include <utils/String16.h>
 
 #include <stdint.h>
 #include <sys/types.h>
@@ -384,7 +384,7 @@ private:
     void*                       mOwnedData;
     const ResStringPool_header* mHeader;
     size_t                      mSize;
-    mutable Mutex               mDecodeLock;
+    mutable std::mutex          mDecodeLock;
     const uint32_t*             mEntries;
     const uint32_t*             mEntryStyles;
     const void*                 mStrings;
