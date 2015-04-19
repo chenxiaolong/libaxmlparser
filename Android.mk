@@ -19,13 +19,23 @@ include $(call all-subdir-makefiles)
 LOCAL_PATH := $(_dir)
 
 include $(CLEAR_VARS)
-
-LOCAL_MODULE := libamlparser
-LOCAL_SRC_FILES := \
-    ResourceTypes.cpp
-LOCAL_C_INCLUDES := \
-	include
-LOCAL_STATIC_LIBRARIES := \
-	libutils
-
+LOCAL_MODULE := libaxmlparser
+LOCAL_SRC_FILES := ResourceTypes.cpp
+LOCAL_C_INCLUDES := include
+LOCAL_STATIC_LIBRARIES := libutils
 include $(BUILD_STATIC_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := libpugixml
+LOCAL_SRC_FILES := external/pugixml/src/pugixml.cpp
+LOCAL_C_INCLUDES := external/pugixml/src
+LOCAL_CFLAGS := -DPUGIXML_NO_EXCEPTIONS
+include $(BUILD_STATIC_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_SRC_FILES := axml2xml.cpp
+LOCAL_MODULE := axml2xml
+LOCAL_STATIC_LIBRARIES := libutils libaxmlparser libpugixml
+LOCAL_C_INCLUDES := include external/pugixml/src
+LOCAL_LDFLAGS := -static
+include $(BUILD_EXECUTABLE)
