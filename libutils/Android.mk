@@ -19,6 +19,7 @@ include $(CLEAR_VARS)
 LOCAL_SRC_FILES := \
 	Log.cpp \
 	SharedBuffer.cpp \
+	Static.cpp \
 	String8.cpp \
 	String16.cpp \
 	Timers.cpp \
