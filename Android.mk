@@ -25,6 +25,8 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/include
 LOCAL_STATIC_LIBRARIES := libutils
 include $(BUILD_STATIC_LIBRARY)
 
+ifneq ($(SKIP_EXAMPLES),true)
+
 include $(CLEAR_VARS)
 LOCAL_MODULE := libpugixml
 LOCAL_SRC_FILES := external/pugixml/src/pugixml.cpp
@@ -39,3 +41,5 @@ LOCAL_STATIC_LIBRARIES := libutils libaxmlparser libpugixml
 LOCAL_C_INCLUDES := include external/pugixml/src
 LOCAL_LDFLAGS := -static
 include $(BUILD_EXECUTABLE)
+
+endif
