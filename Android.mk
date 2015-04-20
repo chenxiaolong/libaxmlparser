@@ -21,7 +21,7 @@ LOCAL_PATH := $(_dir)
 include $(CLEAR_VARS)
 LOCAL_MODULE := libaxmlparser
 LOCAL_SRC_FILES := ResourceTypes.cpp
-LOCAL_C_INCLUDES := include
+LOCAL_C_INCLUDES := $(LOCAL_PATH)/include
 LOCAL_STATIC_LIBRARIES := libutils
 include $(BUILD_STATIC_LIBRARY)
 

@@ -31,7 +31,7 @@ LOCAL_CFLAGS += -Werror
 LOCAL_CFLAGS += -DOS_PATH_SEPARATOR=\'/\'
 
 LOCAL_C_INCLUDES += \
-	include
+	$(LOCAL_PATH)/../include
 
 LOCAL_MODULE := libutils
 
