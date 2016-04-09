@@ -187,7 +187,7 @@ void printXML(ResXMLTree *block)
 
             namespaces.push_back(ns);
         } else if (code == ResXMLTree::END_NAMESPACE) {
-            const namespace_entry &ns = namespaces.front();
+            const namespace_entry &ns = namespaces.back();
             size_t len;
             const char16_t *prefix16 = block->getNamespacePrefix(&len);
             String8 pr;
@@ -207,6 +207,17 @@ void printXML(ResXMLTree *block)
                         uri.string(), ns.uri.string());
             }
 
+            namespaces.pop_back();
+
+            // add to first-node if not duplicated
+            bool found = false;
+            for (const namespace_entry &nsit : namespaces) {
+                if (nsit.uri == ns.uri && nsit.prefix == ns.prefix) {
+                    found = true;
+                    break;
+                }
+            }
+            if(!found) {
             // Hackish, but we don't need a full-blown XML library with
             // namespaces support
             pugi::xml_node child = doc.first_child();
@@ -215,8 +226,8 @@ void printXML(ResXMLTree *block)
                 attrName.append(ns.prefix);
                 child.append_attribute(attrName) = ns.uri;
             }
+            }
 
-            namespaces.pop_back();
         } else if (code == ResXMLTree::TEXT) {
             size_t len;
 
